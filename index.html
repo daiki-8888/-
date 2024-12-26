@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホ向け表示最適化 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>発声練習タスク管理表テンプレート</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --success-color: #27ae60;
+      --warning-color: #f1c40f;
+      --danger-color: #e74c3c;
+      --light-gray: #f7f7f7;
+      --border-color: #ddd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: var(--light-gray);
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 480px; /* スマホで見やすい幅に設定 */
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+      color: var(--primary-color);
+      font-size: 1.4rem; /* スマホでも大きすぎないよう調整 */
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 0.4em;
+    }
+
+    .description {
+      text-align: center;
+      margin-bottom: 1.5em;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5em;
+      background: #fff;
+      font-size: 0.9rem; /* スマホでも窮屈に見えない程度にサイズ調整 */
+    }
+
+    thead {
+      background: var(--primary-color);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 0.5em;
+      vertical-align: top;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    tbody tr:hover {
+      background: #f5f9ff;
+      transition: background-color 0.2s ease;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .status-select, .memo-input, .date-input {
+      width: 100%;
+      padding: 4px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .task-category {
+      font-weight: bold;
+      color: var(--secondary-color);
+      font-size: 0.95rem;
+    }
+
+    .point-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .point-list li {
+      margin-bottom: 0.3em;
+      position: relative;
+      padding-left: 1.2em;
+    }
+
+    .point-list li:before {
+      content: "•";
+      color: var(--secondary-color);
+      position: absolute;
+      left: 0;
+    }
+
+    .save-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 8px 20px;
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      font-size: 0.9rem;
+    }
+
+    .save-btn:hover {
+      background-color: #2980b9;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 1em;
+      padding-top: 0.5em;
+      border-top: 1px solid var(--border-color);
+      color: #777;
+      font-size: 0.8rem;
+    }
+
+    /* 768px以下での表示調整 */
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 0.8rem;
+      }
+
+      /* カラムを減らして見やすくする */
+      .hide-mobile {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>発声練習タスク管理表</h1>
+    <p class="description">毎日の練習を記録・管理し、上達をサポートするためのテンプレート</p>
+    
+    <table id="training-table">
+      <thead>
+        <tr>
+          <th>練習項目</th>
+          <th class="hide-mobile">目的・効果</th>
+          <th>ポイント</th>
+          <th>所要時間</th>
+          <th>実施日</th>
+          <th>状況</th>
+          <th>メモ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ページ読み込み時にJavaScriptで動的に追加 -->
+      </tbody>
+    </table>
+
+    <button class="save-btn" onclick="saveProgress()">進捗を保存</button>
+
+    <footer>
+      <p>© 2024 発声練習タスク管理表テンプレート | 毎日の積み重ねが、あなたの歌声を変える</p>
+    </footer>
+  </div>
+
+  <script>
+    // 進捗を保存する（例:アラートで仮実装）
+    function saveProgress() {
+      alert('進捗が保存されました！(実際にはローカルストレージなどに保存処理を実装)');
+    }
+
+    // 練習項目を動的に生成
+    function addTrainingRows() {
+      const trainingData = [
+        {
+          category: "1. 姿勢チェック",
+          purpose: "声の安定性向上",
+          points: ["壁に背中をつける", "肩の位置を確認", "頭頂部の意識"],
+          time: "2分"
+        },
+        {
+          category: "2. 呼吸練習",
+          purpose: "息の安定性向上",
+          points: ["仰向け→座位→立位", "お腹の動きを意識", "胸は動かさない"],
+          time: "5分"
+        },
+        {
+          category: "3. リップロール",
+          purpose: "喉の緊張緩和",
+          points: ["口角を指で支える", "唇のみ振動", "20-30回×1セット"],
+          time: "3分"
+        },
+        {
+          category: "4. ハミング",
+          purpose: "自然な発声感覚",
+          points: ["口を閉じて発声", "リラックスして実施", "20-30回×1セット"],
+          time: "3分"
+        },
+        {
+          category: "5. 表情筋トレーニング",
+          purpose: "表現力向上",
+          points: ["えーいーあいーおーうー", "大きく口を開ける", "滑らかに繋げる"],
+          time: "5分"
+        },
+        {
+          category: "6. 前の低音",
+          purpose: "声の安定性",
+          points: ["イ〜で5音下降", "まっすぐ出す", "揺らさない"],
+          time: "10分"
+        },
+        {
+          category: "7. チェストボイス",
+          purpose: "声の厚み",
+          points: ["胸を響かせる", "空気をたっぷり", "フーリッシュ練習"],
+          time: "10分"
+        },
+        {
+          category: "8. 鼻腔共鳴",
+          purpose: "高音の土台作り",
+          points: ["うなじに当てる", "鼻を響かせる", "首の力を抜く"],
+          time: "10分"
+        },
+        {
+          category: "9. ファルセット",
+          purpose: "裏声の強化",
+          points: ["ほ〜で5音下降", "息漏れ意識", "リラックス"],
+          time: "10分"
+        },
+        {
+          category: "10. 声帯ストレッチ",
+          purpose: "高音の安定化",
+          points: ["イ〜で上下移動", "声量一定", "純粋なイの音"],
+          time: "10分"
+        },
+        {
+          category: "11. ミックスボイス",
+          purpose: "声区融合",
+          points: ["ネイネイネイ", "軽い声で", "力まない"],
+          time: "10分"
+        },
+        {
+          category: "12. 歌唱練習",
+          purpose: "総合力向上",
+          points: ["歌詞書き出し", "特徴メモ", "録音チェック"],
+          time: "15分"
+        },
+        {
+          category: "13. テクニック練習",
+          purpose: "表現力強化",
+          points: ["ビブラート", "泣き", "しゃくり"],
+          time: "15分"
+        },
+        {
+          category: "14. 実践練習",
+          purpose: "総仕上げ",
+          points: ["1曲通し", "表現確認", "改善点記録"],
+          time: "10分"
+        }
+      ];
+
+      const tbody = document.querySelector('#training-table tbody');
+      trainingData.forEach(data => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="task-category">${data.category}</td>
+          <td class="hide-mobile">${data.purpose}</td>
+          <td>
+            <ul class="point-list">
+              ${data.points.map(point => `<li>${point}</li>`).join('')}
+            </ul>
+          </td>
+          <td>${data.time}</td>
+          <td><input type="date" class="date-input"></td>
+          <td>
+            <select class="status-select">
+              <option value="">選択</option>
+              <option value="done">完了</option>
+              <option value="partial">一部</option>
+              <option value="skip">未実施</option>
+            </select>
+          </td>
+          <td><input type="text" class="memo-input"></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // ページ読み込み時に行追加
+    document.addEventListener('DOMContentLoaded', () => {
+      addTrainingRows();
+    });
+  </script>
+</body>
+</html>
