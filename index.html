@@ -2,18 +2,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- スマホ向け表示最適化 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>発声練習タスク管理表テンプレート</title>
+  <title>声診断ワークシートで劇的に歌唱力をアップする方法</title>
   <style>
     :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #3498db;
-      --success-color: #27ae60;
-      --warning-color: #f1c40f;
-      --danger-color: #e74c3c;
-      --light-gray: #f7f7f7;
+      --primary-color: #2C3E50;
+      --secondary-color: #2980b9;
+      --highlight-color: #f39c12;
       --border-color: #ddd;
+      --bg-color: #f7f7f7;
+      --text-color: #333;
     }
 
     * {
@@ -23,300 +20,501 @@
     }
 
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
-      color: #333;
-      background: var(--light-gray);
-      padding: 10px;
+      padding: 20px;
     }
 
     .container {
-      max-width: 480px; /* スマホで見やすい幅に設定 */
+      max-width: 1000px;
       margin: 0 auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 10px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 1em;
       color: var(--primary-color);
-      font-size: 1.4rem; /* スマホでも大きすぎないよう調整 */
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
       border-bottom: 2px solid var(--secondary-color);
-      padding-bottom: 0.4em;
+      display: inline-block;
+      padding-bottom: 0.5rem;
     }
 
-    .description {
-      text-align: center;
-      margin-bottom: 1.5em;
-      color: #666;
-      font-size: 0.9rem;
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+      border-bottom: 1px solid var(--border-color);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
     }
 
     table {
-      width: 100%;
       border-collapse: collapse;
-      margin-bottom: 1.5em;
-      background: #fff;
-      font-size: 0.9rem; /* スマホでも窮屈に見えない程度にサイズ調整 */
+      width: 100%;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
     }
 
-    thead {
+    thead th {
       background: var(--primary-color);
       color: #fff;
-      position: sticky;
-      top: 0;
-      font-size: 0.9rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
     }
 
     th, td {
       border: 1px solid var(--border-color);
-      padding: 0.5em;
+      padding: 0.75rem;
       vertical-align: top;
     }
 
-    th {
-      text-align: left;
-      font-weight: 600;
-    }
-
-    tbody tr:hover {
-      background: #f5f9ff;
-      transition: background-color 0.2s ease;
-    }
-
     tbody tr:nth-child(even) {
-      background: #f8f9fa;
+      background: #fafafa;
     }
 
-    .status-select, .memo-input, .date-input {
-      width: 100%;
-      padding: 4px;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-
-    .task-category {
+    .highlight {
+      color: var(--highlight-color);
       font-weight: bold;
-      color: var(--secondary-color);
-      font-size: 0.95rem;
-    }
-
-    .point-list {
-      list-style-type: none;
-      padding-left: 0;
-    }
-
-    .point-list li {
-      margin-bottom: 0.3em;
-      position: relative;
-      padding-left: 1.2em;
-    }
-
-    .point-list li:before {
-      content: "•";
-      color: var(--secondary-color);
-      position: absolute;
-      left: 0;
-    }
-
-    .save-btn {
-      display: block;
-      margin: 10px auto;
-      padding: 8px 20px;
-      background-color: var(--secondary-color);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      font-size: 0.9rem;
-    }
-
-    .save-btn:hover {
-      background-color: #2980b9;
     }
 
     footer {
+      margin-top: 2rem;
       text-align: center;
-      margin-top: 1em;
-      padding-top: 0.5em;
-      border-top: 1px solid var(--border-color);
       color: #777;
       font-size: 0.8rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
     }
 
-    /* 768px以下での表示調整 */
     @media (max-width: 768px) {
-      th, td {
-        font-size: 0.8rem;
+      body {
+        padding: 10px;
       }
-
-      /* カラムを減らして見やすくする */
-      .hide-mobile {
-        display: none;
+      .container {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      table {
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>発声練習タスク管理表</h1>
-    <p class="description">毎日の練習を記録・管理し、上達をサポートするためのテンプレート</p>
-    
-    <table id="training-table">
+    <h1>声診断ワークシートで劇的に歌唱力をアップする方法</h1>
+
+    <p>
+      こんにちは。この記事では 
+      <strong>「声診断ワークシート」</strong> を使って、
+      自分の声質を正確に把握し、そのタイプに合った練習法を実践することで、
+      圧倒的な歌唱力向上を目指す方法を解説します。<br><br>
+      カラオケで高い点数を取るために、やみくもに高音ばかり練習していませんか？<br>
+      “いい声” と言われたいけど、具体的に何をどう直せばいいのか迷っていませんか？
+      <br><br>
+      そんな方のために、今回は <strong>声質を4タイプに分け</strong>、さらに <strong>ワークシート</strong> を使って
+      日々の練習記録を効率的に管理する方法を紹介していきます。
+    </p>
+
+    <h2>Step 1. 声の特徴を徹底チェック</h2>
+    <p>
+      まずは自分の声の特徴を <em>「空気量」「得意音域」</em> の2軸から明確にし、自分の声がどのタイプに当てはまるのかを見極めましょう。
+    </p>
+    <h3>1. 空気量は多め？ それとも少なめ？</h3>
+    <ul>
+      <li><strong>空気量多め (エアリー)</strong><br>
+        - 声がやわらかく、ふわっとしている <br>
+        - 息の音が混じりやすい（ウィスパー寄り） <br>
+        - 「抜け感」や「ハスキー感」がある場合も
+      </li>
+      <li><strong>空気量少なめ (締まった声)</strong><br>
+        - 声帯の閉鎖がしっかりしていて、濃密な声 <br>
+        - 息が漏れにくく、音に芯がある <br>
+        - とにかく声がハッキリ前に飛びやすい
+      </li>
+    </ul>
+
+    <h3>2. 得意音域は低い？ それとも高い？</h3>
+    <ul>
+      <li><strong>低音が得意</strong><br>
+        - AメロやBメロがラクに歌える <br>
+        - 低めのトーンに安心感・安定感がある <br>
+        - サビの高音で急激に苦しくなることが多い
+      </li>
+      <li><strong>高音が得意</strong><br>
+        - バンド系のハイトーン・サビで本領発揮 <br>
+        - 地声の高さもそこそこあり、無理せず上の音程を狙える <br>
+        - 逆に低い音程がこもりがちで苦手
+      </li>
+    </ul>
+    <p><em>ワンポイント:</em> 自宅やカラオケで録音し、自分の声を聞き返してみると客観的に判断しやすいです。</p>
+
+    <h2>Step 2. 4タイプの声質一覧</h2>
+    <p>
+      ここでは <strong>「空気量 多め/少なめ」×「低音得意/高音得意」</strong> の組み合わせから生まれる4つのタイプを解説します。<br>
+      それぞれ <strong>特徴・主な課題・おすすめ練習法・参考アーティスト</strong> をまとめていますので、あなたにピッタリの練習法を見つけてください。
+    </p>
+    <table>
       <thead>
         <tr>
-          <th>練習項目</th>
-          <th class="hide-mobile">目的・効果</th>
-          <th>ポイント</th>
-          <th>所要時間</th>
-          <th>実施日</th>
-          <th>状況</th>
-          <th>メモ</th>
+          <th>タイプ</th>
+          <th>A. 空気量多め × 低音<br>リッチで深みのある声</th>
+          <th>B. 空気量多め × 高音<br>柔らかく透き通る高い声</th>
+          <th>C. 空気量少なめ × 低音<br>締まった重厚感ある声</th>
+          <th>D. 空気量少なめ × 高音<br>パワフルで突き抜ける声</th>
         </tr>
       </thead>
       <tbody>
-        <!-- ページ読み込み時にJavaScriptで動的に追加 -->
+        <tr>
+          <td>こんな人に多い</td>
+          <td>
+            <ul>
+              <li>低音は得意だが高音は苦しい</li>
+              <li>声が優しくエアリー</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>サビをふわっとハイトーンで歌うと綺麗</li>
+              <li>地声がやや細め</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>1曲目から「うまい！」と言われがち</li>
+              <li>話し声からして力強い</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>高音に迫力があり「ビンビン」響く</li>
+              <li>ロック・ゴスペル・ベルティング系が得意</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>特徴</td>
+          <td>
+            <ul>
+              <li>温かみ・深みがある</li>
+              <li>バラードでしっとり</li>
+              <li>ソフトに力まず響かせられる</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>高音が柔らかい</li>
+              <li>ウィスパー・裏声を活かす</li>
+              <li>息の漏れが色気に繋がる</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>低音がブレず安定感抜群</li>
+              <li>地声感でパンチがある</li>
+              <li>がなりやシャウトにも向く</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>高音が強く突き抜ける</li>
+              <li>ロングトーンでも迫力</li>
+              <li>ミックスが自然に決まりやすい</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>主な課題</td>
+          <td>
+            <ul>
+              <li>高音で詰まりやすい</li>
+              <li>声量を上げるとこもる</li>
+              <li>場によっては眠そうと感じさせる</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>声に芯が足りずかすれやすい</li>
+              <li>地声で力むと苦しそう</li>
+              <li>音が埋もれがち</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>柔らかい表現が苦手</li>
+              <li>抑揚が少なく単調になりがち</li>
+              <li>優しい曲だと硬く聞こえる</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>声量に頼りすぎて喉を酷使</li>
+              <li>ミックスで裏返りやすい</li>
+              <li>高音連発で喉が疲労しがち</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>おすすめ練習法</td>
+          <td>
+            <ul>
+              <li>チェストボイスで低音の土台</li>
+              <li>鼻腔共鳴で明るさを加える</li>
+              <li>腹式呼吸で息のムラを減らす</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>ウィスパーボイスの基礎</li>
+              <li>ヘッドボイスを息多めで安定化</li>
+              <li>ブレス音を演出に活かす</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>リップロール＆表情筋トレで柔軟性UP</li>
+              <li>チェスト＋低音練習で迫力維持</li>
+              <li>ビブラートで優しさを加える</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>声帯ストレッチやミックスで高音安定</li>
+              <li>ベルティングでパワーアップ</li>
+              <li>裏声切り替えも習得して表現力UP</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>ワンポイント</td>
+          <td>
+            <ul>
+              <li>低音のしっとり感は武器</li>
+              <li>明るく抜きたいときは首の力み除去</li>
+              <li>あごを引きすぎないでこもり軽減</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>かすれるときは小声でヘッド練習</li>
+              <li>ブレスを計画的に入れて酸欠回避</li>
+              <li>話し声から裏声の切替練習を</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>低音パンチ力を活かすなら表情筋も活用</li>
+              <li>あえて低音で歌い出すと「うまい」と印象UP</li>
+              <li>バラードでビブラート投入を</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>高音でも休符や弱音でメリハリを</li>
+              <li>ミックスボイスの“抜き”練習で喉保護</li>
+              <li>ベルティングだけに頼らず強弱を意識</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>参考アーティスト</td>
+          <td>
+            <ul>
+              <li>玉置浩二、中森明菜</li>
+              <li>Eric Clapton</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>YUI、Aimer</li>
+              <li>Norah Jones</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>平井堅、MISIA</li>
+              <li>Adele</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Superfly、LiSA</li>
+              <li>Ariana Grande</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
-    <button class="save-btn" onclick="saveProgress()">進捗を保存</button>
+    <h2>Step 3. 自分のタイプを最終確定</h2>
+    <ul>
+      <li><strong>空気量</strong>: □ 多め / □ 少なめ</li>
+      <li><strong>得意音域</strong>: □ 低音 / □ 高音</li>
+    </ul>
+    <p>
+      組み合わせによるタイプ：<br>
+      <strong>空気量多め × 低音</strong> → <em>Aタイプ</em> (深み・ソフト感)<br>
+      <strong>空気量多め × 高音</strong> → <em>Bタイプ</em> (優しく透き通る高音)<br>
+      <strong>空気量少なめ × 低音</strong> → <em>Cタイプ</em> (力強く締まった低音)<br>
+      <strong>空気量少なめ × 高音</strong> → <em>Dタイプ</em> (突き抜ける高音)<br>
+    </p>
+    <p>
+      <em>注意</em>: あくまで目安です。練習・体調・経験値によって変動します。
+      重要なのは「今どんな声の状態か」を定期的にチェックし、
+      最適な練習法を選ぶことです。
+    </p>
 
-    <footer>
-      <p>© 2024 発声練習タスク管理表テンプレート | 毎日の積み重ねが、あなたの歌声を変える</p>
-    </footer>
-  </div>
-
-  <script>
-    // 進捗を保存する（例:アラートで仮実装）
-    function saveProgress() {
-      alert('進捗が保存されました！(実際にはローカルストレージなどに保存処理を実装)');
-    }
-
-    // 練習項目を動的に生成
-    function addTrainingRows() {
-      const trainingData = [
-        {
-          category: "1. 姿勢チェック",
-          purpose: "声の安定性向上",
-          points: ["壁に背中をつける", "肩の位置を確認", "頭頂部の意識"],
-          time: "2分"
-        },
-        {
-          category: "2. 呼吸練習",
-          purpose: "息の安定性向上",
-          points: ["仰向け→座位→立位", "お腹の動きを意識", "胸は動かさない"],
-          time: "5分"
-        },
-        {
-          category: "3. リップロール",
-          purpose: "喉の緊張緩和",
-          points: ["口角を指で支える", "唇のみ振動", "20-30回×1セット"],
-          time: "3分"
-        },
-        {
-          category: "4. ハミング",
-          purpose: "自然な発声感覚",
-          points: ["口を閉じて発声", "リラックスして実施", "20-30回×1セット"],
-          time: "3分"
-        },
-        {
-          category: "5. 表情筋トレーニング",
-          purpose: "表現力向上",
-          points: ["えーいーあいーおーうー", "大きく口を開ける", "滑らかに繋げる"],
-          time: "5分"
-        },
-        {
-          category: "6. 前の低音",
-          purpose: "声の安定性",
-          points: ["イ〜で5音下降", "まっすぐ出す", "揺らさない"],
-          time: "10分"
-        },
-        {
-          category: "7. チェストボイス",
-          purpose: "声の厚み",
-          points: ["胸を響かせる", "空気をたっぷり", "フーリッシュ練習"],
-          time: "10分"
-        },
-        {
-          category: "8. 鼻腔共鳴",
-          purpose: "高音の土台作り",
-          points: ["うなじに当てる", "鼻を響かせる", "首の力を抜く"],
-          time: "10分"
-        },
-        {
-          category: "9. ファルセット",
-          purpose: "裏声の強化",
-          points: ["ほ〜で5音下降", "息漏れ意識", "リラックス"],
-          time: "10分"
-        },
-        {
-          category: "10. 声帯ストレッチ",
-          purpose: "高音の安定化",
-          points: ["イ〜で上下移動", "声量一定", "純粋なイの音"],
-          time: "10分"
-        },
-        {
-          category: "11. ミックスボイス",
-          purpose: "声区融合",
-          points: ["ネイネイネイ", "軽い声で", "力まない"],
-          time: "10分"
-        },
-        {
-          category: "12. 歌唱練習",
-          purpose: "総合力向上",
-          points: ["歌詞書き出し", "特徴メモ", "録音チェック"],
-          time: "15分"
-        },
-        {
-          category: "13. テクニック練習",
-          purpose: "表現力強化",
-          points: ["ビブラート", "泣き", "しゃくり"],
-          time: "15分"
-        },
-        {
-          category: "14. 実践練習",
-          purpose: "総仕上げ",
-          points: ["1曲通し", "表現確認", "改善点記録"],
-          time: "10分"
-        }
-      ];
-
-      const tbody = document.querySelector('#training-table tbody');
-      trainingData.forEach(data => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td class="task-category">${data.category}</td>
-          <td class="hide-mobile">${data.purpose}</td>
+    <h2>Step 4. ワークシート（練習記録）を活用</h2>
+    <p>
+      下記のようなシンプルなワークシートを毎回記入することで、
+      <strong>自分の声の変化や上達を実感</strong> しやすくなります。
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>自分のタイプ</th>
+          <th>今日の課題・悩み</th>
+          <th>今日の練習・成果</th>
+          <th>次回の目標</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024/xx/xx</td>
+          <td>A (例)</td>
+          <td>高い音が全然出ない</td>
           <td>
-            <ul class="point-list">
-              ${data.points.map(point => `<li>${point}</li>`).join('')}
+            <ul>
+              <li>チェスト+鼻腔共鳴を20分</li>
+              <li>姿勢と呼吸法を見直し、こもりが減った</li>
+              <li>ビブラートも少し試したが不安定</li>
             </ul>
           </td>
-          <td>${data.time}</td>
-          <td><input type="date" class="date-input"></td>
           <td>
-            <select class="status-select">
-              <option value="">選択</option>
-              <option value="done">完了</option>
-              <option value="partial">一部</option>
-              <option value="skip">未実施</option>
-            </select>
+            <ul>
+              <li>裏声(ヘッド)を強化</li>
+              <li>ビブラートをもっと安定させる</li>
+            </ul>
           </td>
-          <td><input type="text" class="memo-input"></td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <em>書き込みのポイント:</em><br>
+      - 課題・悩みをできるだけ具体的に書き出す<br>
+      - 練習内容と、そのときの喉や声の変化をメモ<br>
+      - 次回の目標を設定し、継続的な改善サイクルを回す
+    </p>
 
-    // ページ読み込み時に行追加
-    document.addEventListener('DOMContentLoaded', () => {
-      addTrainingRows();
-    });
-  </script>
+    <h2>各タイプのワンポイントアドバイス (詳細版)</h2>
+
+    <h3>Aタイプ（空気量多め × 低音）</h3>
+    <ol>
+      <li><strong>低音活かしのバラード選曲</strong><br>
+        玉置浩二の「田園」や中森明菜の「難破船」など、低めでしっとり系の曲が相性◎
+      </li>
+      <li><strong>姿勢＆呼吸の再確認</strong><br>
+        こもりを感じたら鼻腔共鳴や明るい母音を多用して抜け感をプラス
+      </li>
+      <li><strong>ソフト声＋少し張りのメリハリ</strong><br>
+        全編ソフトだと変化に乏しいため、サビで張りを加えると印象UP
+      </li>
+    </ol>
+
+    <h3>Bタイプ（空気量多め × 高音）</h3>
+    <ol>
+      <li><strong>裏声と地声のミックス強化</strong><br>
+        「ネイネイネイ」で地声〜裏声を行き来し、芯を作る
+      </li>
+      <li><strong>ブレス＆ウィスパーの表現力</strong><br>
+        ブレス音をうまく使うと儚さや色っぽさを演出できる
+      </li>
+      <li><strong>芯不足対策に地声も鍛える</strong><br>
+        ミドル域の声帯閉鎖を意識すると、高音も安定感が増す
+      </li>
+    </ol>
+
+    <h3>Cタイプ（空気量少なめ × 低音）</h3>
+    <ol>
+      <li><strong>ロック・R&Bで迫力</strong><br>
+        平井堅のしっとり系も良いが、Adeleの力強い曲なども相性◎
+      </li>
+      <li><strong>柔らかい歌い方を研究</strong><br>
+        リップロールやビブラートを挟むと“硬さ”を緩和
+      </li>
+      <li><strong>表情筋や口の開きを大きく</strong><br>
+        バラード時に無表情にならないよう気をつける
+      </li>
+    </ol>
+
+    <h3>Dタイプ（空気量少なめ × 高音）</h3>
+    <ol>
+      <li><strong>喉の負担対策を徹底</strong><br>
+        声帯ストレッチやミックスボイス練習で喉を保護
+      </li>
+      <li><strong>ベルティングのコントロール</strong><br>
+        ロングトーンで力みすぎると翌日まで喉を痛める危険も
+      </li>
+      <li><strong>弱音パートや小音量パートの演出</strong><br>
+        高音パワーだけに頼らず、曲にメリハリをつけると劇的に映える
+      </li>
+    </ol>
+
+    <h2>まとめ</h2>
+    <p>
+      1. 声診断ワークシートで “空気量” と “得意音域” を判断し、自分がどのタイプに属するかを特定しましょう。<br>
+      2. タイプに合った練習法を試しつつ、ワークシートに毎回「課題・成果・次回の目標」を書き込むことで、着実に成長が見えてきます。<br>
+      3. タイプは固定ではなく、練習や体調、経験値によって変化することも。定期的に声を録音し、アップデートしながらベストな練習法を探しましょう。
+    </p>
+    <p>
+      あなたの声質を最大限活かす練習メニューで、理想の歌声に近づいてみませんか？<br>
+      もし参考になったら「いいね」やコメントなどで感想を教えてくださいね。<br>
+      一緒に歌を楽しみながら、圧倒的な歌唱力アップを目指していきましょう！
+    </p>
+
+    <footer>
+      © 2024 声診断ワークシート / あなたの声質を理解し、効果的に歌唱力をアップしよう！
+    </footer>
+  </div>
 </body>
 </html>
